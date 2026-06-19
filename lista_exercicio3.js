@@ -259,7 +259,7 @@ estoqueBebidas.forEach((item) => {
 
 console.log(`Valor total do estoque: R$ ${somaEstoque}`);
 
-/** Crie um array de objetos onde cada objeto representa um contato com nome,
+/** 9. Crie um array de objetos onde cada objeto representa um contato com nome,
 telefone e e-mail. Use forEach para listar todos os contatos formatados. Permita
 buscar um contato pelo nome usando for...of e exiba os dados encontrados ou
 uma mensagem de "não encontrado". */
@@ -332,7 +332,7 @@ pilha.paginaAtual();
 pilha.voltar();
 pilha.paginaAtual();
 
-/** Implemente uma fila usando um array para simular o atendimento de uma
+/** 11. Implemente uma fila usando um array para simular o atendimento de uma
 clínica. Crie as funções chegarPaciente(nome) (enqueue), chamarProximo()
 (dequeue) e exibirFila(). Simule a chegada de 5 pacientes e o atendimento de 3,
 exibindo o estado da fila a cada operação. */
