@@ -332,7 +332,7 @@ pilha.paginaAtual();
 pilha.voltar();
 pilha.paginaAtual();
 
-/** Implemente uma fila usando um array para simular o atendimento de uma
+/** 11. Implemente uma fila usando um array para simular o atendimento de uma
 clínica. Crie as funções chegarPaciente(nome) (enqueue), chamarProximo()
 (dequeue) e exibirFila(). Simule a chegada de 5 pacientes e o atendimento de 3,
 exibindo o estado da fila a cada operação. */
@@ -374,6 +374,52 @@ console.log(`Em atendimento: ${fila.chamarProximo()}`);
 console.log(fila.exibirFila());
 console.log(`Em atendimento: ${fila.chamarProximo()}`);
 console.log(fila.exibirFila());
+
+//Fazendo com array (revisaão aula)
+let fila = [];
+
+function chegarPaciente(nome) {
+  fila.push(nome);
+  console.log(`Paciente "${nome}" chegou e entrou na fila`);
+
+  exibirFila();
+}
+
+function chamarProximo() {
+  if (fila.length === 0) {
+    console.log(`A fila esta vazia. Não há pacientes para atender`);
+
+    return;
+  }
+
+  let atendido = fila.shift();
+  console.log(`Atendemos o paciente "${atendido}"`);
+
+  exibirFila();
+}
+
+function exibirFila() {
+  if (fila.length === 0) {
+    console.log(`A fila esta vazia`);
+    return;
+  }
+
+  console.log(`Fila atual: ${fila.join(", ")}\n`);
+}
+
+console.log("=== Chegada dos paciente === \n");
+
+chegarPaciente("Amora");
+chegarPaciente("Grampola");
+chegarPaciente("Pumba");
+chegarPaciente("Paçoca");
+chegarPaciente("Chispita");
+
+console.log("=== Início dos Atendi,entos === \n");
+
+chamarProximo();
+chamarProximo();
+chamarProximo();
 
 /** 12. Implemente uma lista ligada simples usando nós ({ valor, proximo }). Crie as
 funções adicionar(tarefa), remover(tarefa) e exibir() que percorre todos os nós.
@@ -458,3 +504,90 @@ tarefas.removeTarefa("Assistir palestra");
 
 console.log("Depois da remoção");
 tarefas.exibirTarefa();
+
+//Fazendo com funções como feito e corrigino na aula
+// Obs - Esse exercício eu não tinha entendido nada e não sabia fazer, aí a AI me ajudou mas agira estou seguindo a aula p/ entender.
+let inicio = null;
+
+function adicionar(tarefa) {
+  let novoNo = { valor: tarefa, proximo: null };
+
+  if (inicio === null) {
+    inicio = novoNo;
+  } else {
+    let atual = inicio;
+
+    while (atual.proximo !== null) {
+      atual = atual.proximo;
+    }
+
+    atual.proximo = novoNo;
+  }
+
+  console.log(`Tarefa "${tarefa}" adicionada`);
+}
+
+function remover(tarefa) {
+  if (inicio === null) {
+    console.log(`Lista vazia. Não foi possível remover.`);
+    return;
+  }
+
+  if (inicio.valor === tarefa) {
+    inicio = inicio.proximo;
+    console.log(`Tarefa "${tarefa}" removida.`);
+    return;
+  }
+
+  let anterior = inicio;
+  let atual = inicio.proximo;
+
+  while (atual !== null) {
+    if (atual.valor === tarefa) {
+      anterior.proximo = atual.proximo;
+      console.log(`Tarefa "${tarefa}" removida.`);
+      return;
+    }
+
+    anterior = atual;
+    atual = atual.proximo;
+  }
+
+  console.log(`Tarefa "${tarefa}" não encontrada.`);
+}
+
+function exibir() {
+  if (inicio === null) console.log("Lista vazia.");
+  return;
+
+  let atual = inicio;
+  let saida = "";
+
+  while (atual !== null) {
+    saida += atual.valor;
+
+    if (atual.proximo !== null) {
+      saida += " -> ";
+    }
+
+    atual = atual.proximo;
+  }
+
+  console.log(`Lista: ${saida} -> null \n`);
+}
+
+console.log("=== Adicionando tarefas ===");
+adicionar("Estudar aula");
+adicionar("Academia");
+adicionar("Varrer a casa");
+adicionar("Assistir aula");
+adicionar("Tomar café");
+
+exibir();
+
+console.log("=== Removendo uma tarefa ===");
+remover("Academia");
+exibir();
+
+remover("Dormir");
+exibir();
